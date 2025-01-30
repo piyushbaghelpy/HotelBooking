@@ -1,0 +1,66 @@
+{% extends "utils/base.html" %}
+
+{% block start %}
+<div class="container">
+<div class="card-body mt-5">
+    <!-- Display the hotel name -->
+    <h2 class="card-title">{{ hotel.hotel_name }}</h2>
+<br>
+    <!-- Display the hotel prices -->
+    <h5>Price <span class="badge text-bg-danger">{{ hotel.hotel_price }}</span></h5>
+    <h5>Offer Price <span class="badge text-bg-success">{{ hotel.hotel_offer_price }}</span></h5>
+    <hr>
+
+    <!-- Display the hotel location -->
+    <p><h5>Location</h5> {{ hotel.hotel_location }}</p>
+<hr>
+    <h5>Ameneties -</h5> 
+    <!-- Display the hotel amenities -->
+    {% for amni in hotel.ameneties.all %}
+         <span class="badge text-bg-primary">{{amni}}</span>
+    {% endfor %}
+    
+<hr>
+    <h5>Description -</h5>   
+    <p>{{ hotel.hotel_description}}</p>
+   <!-- Display the hotel images -->
+   
+   <div class="row">
+        {% for image in hotel.hotel_images.all %}
+            <div class="col-2">
+                <img src="/media/{{ image.image }}" style="height: 150px;">
+            </div>
+        {% endfor %}
+    </div>
+    {% if request.user.is_authenticated %}
+
+        <form method ="POST">
+            {% csrf_token %}
+            <br>
+        {% include "utils/alerts.html" %}
+        <hr>
+<b><h4>Booking-</h4></b>
+<br>
+    <div class="mb-3">
+        <b><label for="start_date" class="form-label">Start Date</label></b>
+        <input type="date" name="start_date" class="form-control" id="start_date" onfocus="this.showPicker();">
+    </div>
+
+    <div class="mb-3">
+        <b><label for="end_date" class="form-label">End Date</label></b>
+        <input type="date" name="end_date" class="form-control" id="end_date" onfocus="this.showPicker();">
+    </div>
+
+              <button type="submit" class="btn btn-danger mt-5">Book now</button>
+            </form>
+         {% else %}
+         <br>
+         <a href="{% url 'login_page' %}" class="btn btn-success">Login</a>
+         {% endif %}
+    
+      </div>
+    </div>
+    
+    
+    
+    {% endblock %}

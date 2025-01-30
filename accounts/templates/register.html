@@ -1,0 +1,59 @@
+{% extends "utils/base.html" %}
+
+{% block start %}
+
+<div class="container mt-5 pt-5 pb-5">
+
+    <!-- Centered Card for Registration Form -->
+    <div class="col-12 col-md-6 mx-auto card shadow-lg p-4 rounded-4" style="border: none; background-color: #f8f9fa;">
+               
+        <!-- Card Title -->
+        <h2 class="text-center mb-4" style="color: #2c3e50;">Create an Account</h2>
+        
+        <!-- Registration Form -->
+        <form method="post">
+            {% include "utils/alerts.html" %}
+            {% csrf_token %}
+            
+            <!-- Fname  Field -->
+            <div class="mb-4">
+                <label for="fInput" class="form-label" style="font-weight: 500;">First Name</label>
+                <input type="text" name="first_name" class="form-control form-control-lg" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your First Name" required>
+
+            </div>
+            <!-- Lname  Field -->
+            <div class="mb-4">
+                <label for="lInput" class="form-label" style="font-weight: 500;">Last Name</label>
+                <input type="text" name="last_name" class="form-control form-control-lg" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your Last Name" required>
+                
+            </div>
+            <!-- Email Input Field -->
+            <div class="mb-4">
+                <label for="emailInput" class="form-label" style="font-weight: 500;">Email Address</label>
+                <input type="email" name="email" class="form-control form-control-lg" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your Email" required>
+                <div id="emailHelp" class="form-text">We’ll never share your email with anyone else.</div>
+            </div>
+
+            <!-- phone Input Field -->
+            <div class="mb-4">
+                <label for="emailInput" class="form-label" style="font-weight: 500;">Phone Number</label>
+                <input type="number" name='phone_number' class="form-control form-control-lg" id="emailInput" aria-describedby="emailHelp" placeholder="Enter your Phone Number" required>
+            </div>
+
+            <!-- Password Input Field -->
+            <div class="mb-4">
+                <label for="passwordInput" class="form-label" style="font-weight: 500;">Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" id="passwordInput" placeholder="Enter your Password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 py-2" style="background-color: #3498db; border-radius: 30px; border: none; font-size: 16px;">
+                Register
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

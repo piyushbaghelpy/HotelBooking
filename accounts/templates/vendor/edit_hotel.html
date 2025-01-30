@@ -1,0 +1,75 @@
+{% extends "utils/vendor_base.html" %}
+
+{% block start %}
+
+<div class="container mt-5 pt-5 pb-5">
+
+    <!-- Centered Card for Login Form -->
+    <div class="col-12 col-md-6 mx-auto card shadow-lg p-4 rounded-4" style="border: none; background-color: #f8f9fa;">
+        
+        <!-- Card Title -->
+        <h2 class="text-center mb-4" style="color: #2c3e50;">Edit Hotel</h2>
+        <b><label for="exampleInputEmail1" class="form-label" style="font-weight: 500;">Bookings</label></b>
+        <ul class="list-group">
+            {% for booking in hotel.bookings.all %}
+                <li class="list-group-item">{{booking.}} Start Date - {{booking.booking_start_date}}   End Date - {{booking.booking_end_date}}</li>
+                <br>
+                {% endfor %}
+            </ul>
+       
+        <form method="POST">
+            {% include "utils/alerts.html" %}
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label" style="font-weight: 500;">Hotel Name</label>
+                <input id="email" type="text" value="{{hotel.hotel_name}}" name="hotel_name" class="form-control" style="font-weight: 500;" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
+            </div>
+    
+            <div class="mb-4">
+                <div class="form-floating">
+                    <textarea name="hotel_description" class="form-control"  placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Description</label>
+                </div> 
+            </div>
+            <div class="mb-3">
+                <b><label for="exampleInputEmail1" class="form-label">Hotel Ameneties</label></b>
+              <select name="ameneties" class="form-select form-select-sm" multiple aria-label="Small select example">
+                {% for amenetie in ameneties %}
+                <option value="{{amenetie.id}}">{{amenetie.name}}</option>
+                {% endfor %}
+              </select>
+              </div>
+            <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label" style="font-weight: 500;">Hotel Price</label>
+                <input id="email" type="number" value="{{hotel.hotel_price}}" name="hotel_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label" style="font-weight: 500;">Hotel Offer Price</label>
+                <input id="email" type="number" value="{{hotel.hotel_offer_price}}" name="hotel_offer_price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+    
+            <div class="mb-4">
+                <label for="exampleInputEmail1" class="form-label" style="font-weight: 500;">Hotel Location</label>
+                <input id="email" type="text" value="{{hotel.hotel_location}}" name="hotel_location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
+            </div>
+            <!-- Submit Button -->
+            
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary w-100 py-2 me-2" 
+                    style="background-color: #3498db; border-radius: 30px; border: none; font-size: 16px;">
+                    Submit
+                </button>
+            </div>
+            
+
+            
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

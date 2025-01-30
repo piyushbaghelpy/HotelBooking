@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HOTEL BOOKING</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        .hotel-rating {
+            font-size: 1.2rem; /* Slightly larger stars */
+            font-weight: bold; /* Bold for visibility */
+            color: gold; /* Gold color for the stars */
+            text-shadow: 1px 1px 2px black; /* A more prominent shadow for visibility */
+        }
+
+        /* Responsive Navbar */
+        .navbar {
+            background-color: #343a40;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+  <body>
+    <!-- Navbar Inclusion -->
+    {% include "utils/navbar.html" %}
+
+    <!-- Content Block -->
+    {% block start %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-dark p-4 mt-5">
+        <p class="text-center text-white mb-0">All Rights Reserved © 2025. HOTEL BOOKING| 
+            <a href="{% url 'login_vendor' %}">Login Vendor</a> |  <a href="{% url 'register_vendor'%}">Register Vendor</a></p>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

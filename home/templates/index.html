@@ -1,0 +1,48 @@
+{% extends "utils/base.html" %}
+{% block start %}
+<div class="container mt-5 pt-5 pb-5">
+  <div class="col-9 mx-auto ">
+    <form class="d-flex">
+      <input type="text" name="search" class="form-control" placeholder="Search">
+      <select class="form-control" name="sort_by">
+        <option value="">Choose</option>
+        <option  value="sort_low">Sort by Low to high</option>
+        <option  value="sort_high">Sort by high to Low</option>
+      </select>
+      <button type="submit" class="btn btn-warning mt-1">Search</button>
+    </form>
+    <br>
+  </div>
+    <div class="row">
+      {% for hotel in hotels %}
+        <div class="col-md-3 mt-3">
+            <div class="card shadow" style="width: 18rem;">
+         
+                <a href="{% url 'hotel_details' hotel.hotel_slug %}" style="text-decoration: none; color: inherit;">
+
+              {% if hotel.hotel_images.first %}
+              <img src="/media/{{hotel.hotel_images.first.image}}" class="card-img-top" alt="...">
+               {% else %}
+
+               <img src="https://en.ac-illust.com/clip-art/25480354/no-image-thumbnail-1-with-no-image" class="card-img-top" alt="...">
+{% endif %}
+              <div class="card-body">
+                  <h5 class="card-title">{{hotel.hotel_name}}</h5>
+
+                    Price <span class="badge text-bg-danger">{{hotel.hotel_price}}</span>
+                    Offer Price <span class="badge text-bg-success">{{hotel.hotel_offer_price}}</span>
+<hr>
+                  <p>{{hotel.hotel_location}}</p>
+                  {% for amni in hotel.ameneties.all %}
+                    <span class="badge text-bg-primary">{{amni}}</span>
+                    {% endfor %}
+
+                </div>
+                </a>
+              </div>
+        </div>
+      {% endfor %}
+       </div>
+</div>
+
+{% endblock %}
